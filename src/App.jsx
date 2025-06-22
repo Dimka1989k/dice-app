@@ -73,13 +73,14 @@ function App() {
   return (
     <>
       <div className="flex">
-        <div className="relative bg-[url('./assets/Bg.png')]">
+        <div className="relative bg-[url('./assets/bgMain.png')] bg-cover bg-center bg-no-repeat">
           <Header />
           <Timer
             availableRolls={availableRolls}
             maxRolls={MAX_ROLLS}
             rechargeTimer={rechargeTimer}
           />
+          
           <Dice ref={diceRef} />
           <Chip currentPosition={currentChipPosition} />
           <div className="flex items-center justify-center gap-2">

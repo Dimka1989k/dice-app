@@ -8,10 +8,18 @@
   top: 75.5px;
 }
 
-@media screen and (max-width: 321px) {
+@media screen and (max-width: 320px) {
   .roll-paragraph-before::before {
     width: 60px;
-    left: 36px;
+    
+  }
+}
+
+
+@media screen and (max-width: 428px) {
+  .roll-paragraph-before::before {
+    width: 80px;
+   
   }
 }
 
@@ -28,6 +36,15 @@
 @media screen and (max-width: 321px) {
   .roll-paragraph-after::after {
     width: 60px;
-    right: 36px;
+    
+   
+  }
+}
+
+
+@media screen and (max-width: 428px) {
+  .roll-paragraph-after::after {
+    width: 80px;
+   
   }
 }

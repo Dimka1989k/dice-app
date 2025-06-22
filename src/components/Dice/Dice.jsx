@@ -47,7 +47,9 @@ const Dice = forwardRef((props, ref) => {
   }));
 
   return (
-    <section className="w-[72px] h-[72px] perspective-[200px] perspective-origin-[50%_100%] absolute top-[380px] right-[190px] z-[100000] max-[321px]:top-[354px] max-[321px]:right-[124px]">
+    <section className="w-[72px] h-[72px] perspective-[200px] perspective-origin-[50%_100%] absolute top-[380px] 
+    right-[190px] z-[100000] max-[321px]:top-[345px] max-[321px]:right-[124px] min-[375px]:top-[345px] min-[375px]:right-[152px]
+    min-[428px]:top-[376px] min-[428px]:right-[190px]">
       <div ref={wrapperRef} className="cube-wrapper">
         <div
           id="cube"

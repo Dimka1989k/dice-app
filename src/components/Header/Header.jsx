@@ -5,7 +5,7 @@ import Dots from "../../assets/icon-header/dots.png";
 
 export default function Header() {
   return (
-    <header className="flex justify-between mt-[56px] mx-4 mb-[2px] max-[320px]:mx-2">
+    <header className="flex justify-between mt-[56px] mx-8 mb-[2px] max-[320px]:mx-10">
       <button className="flex items-center justify-center gap-[12px] text-white text-[13px] font-extrabold px-[12px] py-[8.5px] bg-white/20 rounded-full">
         <img className="img" src={ArrowLeft} alt="ArrowLeft" />
         Close

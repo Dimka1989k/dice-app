@@ -22,7 +22,7 @@ export default function Timer({ availableRolls, maxRolls, rechargeTimer }) {
           key={i}
           className={`w-[36px] h-[16px] rounded-sm 
             first:rounded-l-[8px] last:rounded-r-[8px] 
-            min-[320px]:max-[428px]:w-[26px] min-[320px]:max-[428px]:h-[12px]`}
+            min-[320px]:max-[428px]:w-[28px] min-[320px]:max-[428px]:h-[14px]`}
           style={{
             background: isFilled
               ? "linear-gradient(to bottom, #ffd600, #ffa100)"
@@ -37,7 +37,7 @@ export default function Timer({ availableRolls, maxRolls, rechargeTimer }) {
   return (
     <div className="flex flex-col relative">
       <div className="roll-paragraph-before" />
-      <h1 className="text-white text-[24px] text-center mt-[64px] font-extrabold leading-[100%]">
+      <h1 className="text-white text-[24px] text-center mt-[60px] font-extrabold leading-[100%]">
         Roll Craft
       </h1>
       <div className="roll-paragraph-after" />
