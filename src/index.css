@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import "tailwindcss";
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  cursor: pointer;
+}
+
+.img:active {
+  animation: pulse-img 0.3s ease-out;
+  transform-origin: center;
+}
+
+.img {
+  transition: transform 0.1s ease-out;
+}
+
+@keyframes pulse-img {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
