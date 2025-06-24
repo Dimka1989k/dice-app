@@ -10,11 +10,16 @@ import icon8 from "../../assets/dice-icon/icon8.png";
 import icon9 from "../../assets/dice-icon/icon9.svg";
 
 export default function Chip({ currentPosition }) {
-  const blocks = [
-    { id: 1, className: "list1", text: "Start", img: icon1 },
+  const tooltipTexts = [
+    "Start", "Box", "Cash", "VIP", "Pickaxe", "Star", "Truck", "Cash", "Dice", "Gold",
+    "Start", "Box", "Cash", "VIP", "Pickaxe", "Star", "Truck", "Cash", "Dice", "Gold"
+  ];
+ 
+  const blocksData = [
+    { id: 1, className: "list1", img: icon1, defaultText: "Start" },
     { id: 2, className: "list2", img: icon2 },
     { id: 3, className: "list3", img: icon3 },
-    { id: 4, className: "list4", text: "30 min", img: icon4 },
+    { id: 4, className: "list4", img: icon4, defaultText: "30 min" },
     { id: 5, className: "list5", img: icon5 },
     { id: 6, className: "list6", img: icon6 },
     { id: 7, className: "list7", img: icon7 },
@@ -24,7 +29,7 @@ export default function Chip({ currentPosition }) {
     { id: 11, className: "list11", img: icon1 },
     { id: 12, className: "list12", img: icon2 },
     { id: 13, className: "list13", img: icon3 },
-    { id: 14, className: "list14", text: "60 min", img: icon4 },
+    { id: 14, className: "list14", img: icon4, defaultText: "60 min" },
     { id: 15, className: "list15", img: icon5 },
     { id: 16, className: "list16", img: icon6 },
     { id: 17, className: "list17", img: icon7 },
@@ -32,6 +37,11 @@ export default function Chip({ currentPosition }) {
     { id: 19, className: "list19", img: icon8 },
     { id: 20, className: "list20", img: icon9 },
   ];
+  
+  const blocks = blocksData.map((block, index) => ({
+    ...block,
+    tooltip: tooltipTexts[index] 
+  }));
 
   return (
     <>
@@ -47,12 +57,12 @@ export default function Chip({ currentPosition }) {
             classNames += " pulse-on-hover";
           }
 
-          return (
-            <li key={block.id} className={classNames}>
-              {block.text &&
+          return (         
+            <li key={block.id} className={classNames} title={block.tooltip}>             
+              {block.defaultText && 
                 (block.className === "list1" ? (
                   <>
-                    <p className="text-list">{block.text}</p>
+                    <p className="text-list">{block.defaultText}</p>
                     <img
                       className="img-icon1"
                       src={block.img}
@@ -66,10 +76,10 @@ export default function Chip({ currentPosition }) {
                       src={block.img}
                       alt={`icon${block.id}`}
                     />
-                    <p className="text-list4">{block.text}</p>
+                    <p className="text-list4">{block.defaultText}</p>
                   </div>
-                ))}
-              {!block.text && <img src={block.img} alt={`icon${block.id}`} />}
+                ))}           
+              {!block.defaultText && <img src={block.img} alt={`icon${block.id}`} />}
             </li>
           );
         })}

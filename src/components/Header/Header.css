@@ -1,0 +1,21 @@
+.img-header {
+  cursor: pointer;
+  transition: transform 0.1s ease-out;
+}
+
+.img-header:active {
+  animation: pulse-img 0.3s ease-out;
+  transform-origin: center;
+}
+
+@keyframes pulse-img {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

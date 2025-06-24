@@ -18,19 +18,3 @@ body {
   animation: pulse-img 0.3s ease-out;
   transform-origin: center;
 }
-
-.img {
-  transition: transform 0.1s ease-out;
-}
-
-@keyframes pulse-img {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}

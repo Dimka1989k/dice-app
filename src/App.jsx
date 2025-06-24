@@ -102,9 +102,9 @@ function App() {
           <Dice ref={diceRef} />
           <Chip currentPosition={currentChipPosition} />
           <div className="flex items-center justify-center gap-2">
-            <img className="img w-8 h-8" src={dice} alt="dice" />
+            <img className="img-roll w-8 h-8" src={dice} alt="dice" />
             <p className="text-white text-xl font-semibold leading-none">9</p>
-            <img className="img w-6 h-6" src={plus} alt="plus" />
+            <img className="img-roll w-6 h-6" src={plus} alt="plus" />
           </div>
           <div className="flex flex-col items-center justify-center gap-12">
             <button
