@@ -53,8 +53,8 @@ export default function Timer({ availableRolls, maxRolls, rechargeTimer }) {
 
         <div className="flex flex-col items-center justify-between mx-[41px] mb-[24px] max-[321px]:mx-2">
           <ul className="flex gap-[1px] mb-[8px]">{renderRollBlocks()}</ul>
-          <div className="text-white/20 rounded-lg border border-white/20 px-[8px] pt-[6px] pb-[4px]">
-            <p className="text-white/60 text-[14px] font-semibold leading-[100%]">
+          <div className="w-[81px] h-[24px]">
+            <p className="text-white/60 text-[14px] font-semibold leading-[100%] border border-white/20 px-[8px] pt-[6px] pb-[4px] rounded-lg ">
               {availableRolls === maxRolls
                 ? "00:00:00"
                 : formatTime(rechargeTimer)}

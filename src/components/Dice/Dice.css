@@ -127,7 +127,7 @@
   position: absolute;
   width: 72px;
   height: 72px;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 18px 0;    
   backface-visibility: hidden;
 }

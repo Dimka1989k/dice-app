@@ -53,19 +53,37 @@ function App() {
 
       if (diceRef.current) {
         const rolledValue = diceRef.current.roll();
-        const newPosition = currentChipPosition + rolledValue;
-        setTimeout(() => {
-          setCurrentChipPosition(Math.min(newPosition, 20));
-          setIsRolling(false);
+        const initialChipPosition = currentChipPosition;
+        const chipMoveDelay = 300;
+        const diceAnimationDuration = 1500;
 
-          setAvailableRolls((prevRolls) => {
-            const newRolls = prevRolls - 1;
-            if (newRolls < MAX_ROLLS && rechargeTimer === 0) {
-              setRechargeTimer(ROLL_RECHARGE_TIME);
-            }
-            return newRolls;
-          });
-        }, 1500);
+        setTimeout(() => {
+          for (let i = 1; i <= rolledValue; i++) {
+            setTimeout(() => {
+              setCurrentChipPosition(Math.min(initialChipPosition + i, 20));
+              if (i === rolledValue) {
+                setIsRolling(false);
+                setAvailableRolls((prevRolls) => {
+                  const newRolls = prevRolls - 1;
+                  if (newRolls < MAX_ROLLS && rechargeTimer === 0) {
+                    setRechargeTimer(ROLL_RECHARGE_TIME);
+                  }
+                  return newRolls;
+                });
+              }
+            }, i * chipMoveDelay);
+          }
+          if (rolledValue === 0 || initialChipPosition >= 20) {
+            setIsRolling(false);
+            setAvailableRolls((prevRolls) => {
+              const newRolls = prevRolls - 1;
+              if (newRolls < MAX_ROLLS && rechargeTimer === 0) {
+                setRechargeTimer(ROLL_RECHARGE_TIME);
+              }
+              return newRolls;
+            });
+          }
+        }, diceAnimationDuration);
       }
     }
   };
@@ -73,14 +91,14 @@ function App() {
   return (
     <>
       <div className="flex">
-        <div className="relative bg-[url('./assets/bgMain.png')] bg-cover bg-center bg-no-repeat">
+        <div className="relative bg-[url('./assets/bgMain.png')] bg-cover bg-center bg-no-repeat w-full min-h-screen">
           <Header />
           <Timer
             availableRolls={availableRolls}
             maxRolls={MAX_ROLLS}
             rechargeTimer={rechargeTimer}
           />
-          
+
           <Dice ref={diceRef} />
           <Chip currentPosition={currentChipPosition} />
           <div className="flex items-center justify-center gap-2">
@@ -90,13 +108,11 @@ function App() {
           </div>
           <div className="flex flex-col items-center justify-center gap-12">
             <button
-              className={`
-    text-white mt-9 px-[135px] py-[14px] text-lg font-extrabold rounded 
-    cursor-pointer border-none transition duration-300 ease-in-out
-    bg-gradient-to-b from-[#6dbf1d] to-[#498013]
-    disabled:bg-[rgba(152,72,72,0.1)] disabled:cursor-not-allowed disabled:opacity-70
-    sm:px-[165px]
-  `}
+              className={`text-white mt-9 px-[167px] py-[14px] text-lg font-extrabold rounded
+                 cursor-pointer border-none transition duration-300 ease-in-out 
+                 bg-gradient-to-b from-[#6dbf1d] to-[#498013] disabled:bg-[rgba(152,72,72,0.1)] 
+                 disabled:cursor-not-allowed disabled:opacity-70 max-[321px]:px-[132px] max-[376px]:px-[130px] 
+                 max-[426px]:px-[154px] max-[429px]:px-[165px]`}
               onClick={handleRollClick}
               disabled={
                 (availableRolls === 0 && rechargeTimer > 0) || isRolling
