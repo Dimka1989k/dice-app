@@ -48,7 +48,6 @@ function App() {
           console.log("Audio play failed:", error);
         });
       }
-
       setIsRolling(true);
 
       if (diceRef.current) {
@@ -60,20 +59,13 @@ function App() {
         setTimeout(() => {
           for (let i = 1; i <= rolledValue; i++) {
             setTimeout(() => {
-              setCurrentChipPosition(Math.min(initialChipPosition + i, 20));
-              if (i === rolledValue) {
-                setIsRolling(false);
-                setAvailableRolls((prevRolls) => {
-                  const newRolls = prevRolls - 1;
-                  if (newRolls < MAX_ROLLS && rechargeTimer === 0) {
-                    setRechargeTimer(ROLL_RECHARGE_TIME);
-                  }
-                  return newRolls;
-                });
-              }
+              setCurrentChipPosition((prevPos) =>
+                Math.min(initialChipPosition + i, 20)
+              );
             }, i * chipMoveDelay);
           }
-          if (rolledValue === 0 || initialChipPosition >= 20) {
+          const totalChipMovementDuration = rolledValue * chipMoveDelay;
+          setTimeout(() => {
             setIsRolling(false);
             setAvailableRolls((prevRolls) => {
               const newRolls = prevRolls - 1;
@@ -82,7 +74,7 @@ function App() {
               }
               return newRolls;
             });
-          }
+          }, totalChipMovementDuration);
         }, diceAnimationDuration);
       }
     }
@@ -109,13 +101,15 @@ function App() {
           <div className="flex flex-col items-center justify-center gap-12">
             <button
               className={`text-white mt-9 px-[167px] py-[14px] text-lg font-extrabold rounded
-                 cursor-pointer border-none transition duration-300 ease-in-out 
-                 bg-gradient-to-b from-[#6dbf1d] to-[#498013] disabled:bg-[rgba(152,72,72,0.1)] 
-                 disabled:cursor-not-allowed disabled:opacity-70 max-[321px]:px-[132px] max-[376px]:px-[130px] 
-                 max-[426px]:px-[154px] max-[429px]:px-[165px]`}
+                   cursor-pointer border-none transition duration-300 ease-in-out
+                   bg-gradient-to-b from-[#6dbf1d] to-[#498013] disabled:bg-[rgba(152,72,72,0.1)]
+                   disabled:cursor-not-allowed disabled:opacity-70 max-[321px]:px-[132px] max-[376px]:px-[130px]
+                   max-[426px]:px-[154px] max-[429px]:px-[165px]`}
               onClick={handleRollClick}
               disabled={
-                (availableRolls === 0 && rechargeTimer > 0) || isRolling
+                (availableRolls === 0 && rechargeTimer > 0) ||
+                isRolling ||
+                currentChipPosition === 20
               }
             >
               Roll
