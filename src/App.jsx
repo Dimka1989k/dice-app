@@ -12,6 +12,7 @@ import rollSound from "./assets/soundsRoll.mp3";
 const MAX_ROLLS = 10;
 const ROLL_RECHARGE_TIME = 5 * 60;
 
+
 function App() {
   const diceRef = useRef(null);
   const [currentChipPosition, setCurrentChipPosition] = useState(1);
